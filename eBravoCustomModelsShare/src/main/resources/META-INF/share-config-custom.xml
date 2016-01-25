@@ -1,0 +1,569 @@
+<!-- Share configuration related to this particular Share module extension, 
+	such as: - Doclib action config - Form config - Aspect and Type config Note. 
+	Any configuration related to the whole Share.war webapp (i.e. not specific 
+	to this share extension) should be placed in the environment specific config: 
+	alfresco/tomcat/shared/classes/alfresco/web-extension/share-config-custom.xml 
+	file -->
+<alfresco-config>
+
+	<config replace="true" evaluator="string-compare" condition="DocumentLibrary">
+
+		<!-- Used by the "Change Type" action Define valid subtypes using the following 
+			example: <type name="cm:content"> <subtype name="cm:mysubtype" /> </type> 
+			Remember to also add the relevant i18n string(s): cm_mysubtype=My SubType -->
+		<types>
+			<type name="cm:folder">
+				<subtype name="earq:processo" />
+				<subtype name="earq:contrato" />
+				<subtype name="earq:prontuario" />
+			</type>
+		</types>
+
+		<!-- <create-content> <content id="Processo" mimetype="text/plain" label="Processo" 
+			itemid="earq:processo" /> </create-content> -->
+	</config>
+
+
+
+	<config evaluator="node-type" condition="earq:processo">
+		<forms>
+			<form>
+				<field-visibility>
+					<show id="cm:name" />
+					<show id="cm:title" force="true" />
+					<show id="cm:description" force="true" />
+
+					<show id="earq:processo" />
+					<show id="earq:classe" />
+					<show id="earq:assunto" />
+					<show id="earq:datadistribuicao" />
+					<show id="earq:controle" />
+					<show id="earq:datadistribuicao" />
+					<show id="earq:juiz" />
+					<show id="earq:tribunal" />
+					<show id="earq:origem" />
+					<show id="earq:parte" />
+					<show id="earq:status" />
+					<show id="earq:valor" />
+				</field-visibility>
+				<appearance>
+					<set id="dadosfieldset" appearance="fieldset" label="Dados do Processo" />
+					<field id="cm:title" set="dadosfieldset" />
+					<field id="cm:description" set="dadosfieldset" />
+					<field id="earq:processo" label-id="prop.earq_processo_processo"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:classe" label-id="prop.earq_processo_classe"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:assunto" label-id="prop.earq_processo_assunto"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:datadistribuicao" label-id="prop.earq_processo_datadistribuicao"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/date.ftl" />
+					</field>
+					<field id="earq:controle" label-id="prop.earq_processo_controle"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:juiz" label-id="prop.earq_processo_juiz" set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:tribunal" label-id="prop.earq_processo_tribunal"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:origem" label-id="prop.earq_processo_origem"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:parte" label-id="prop.earq_processo_parte"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:status" label-id="prop.earq_processo_status"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/selectone.ftl" />
+						<control-param name="options"> ,Em andamento,Arquivo
+							Morto,Outro
+						</control-param>
+					</field>
+					<field id="earq:valor" label-id="prop.earq_processo_valor"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+				</appearance>
+			</form>
+
+		</forms>
+	</config>
+
+
+
+
+	<config evaluator="model-type" condition="earq:processo">
+		<forms>
+			<!-- Search form -->
+			<form id="search">
+				<field-visibility>
+					<show id="cm:name" />
+					<show id="cm:title" force="true" />
+					<show id="cm:description" force="true" />
+
+					<show id="earq:processo" />
+					<show id="earq:classe" />
+					<show id="earq:assunto" />
+					<show id="earq:datadistribuicao" />
+					<show id="earq:controle" />
+					<show id="earq:datadistribuicao" />
+					<show id="earq:juiz" />
+					<show id="earq:tribunal" />
+					<show id="earq:origem" />
+					<show id="earq:parte" />
+					<show id="earq:status" />
+					<show id="earq:valor" />
+				</field-visibility>
+				<appearance>
+					<set id="dadosfieldset" appearance="fieldset" label="Dados do Processo" />
+					<field id="cm:title" set="dadosfieldset" />
+					<field id="cm:description" set="dadosfieldset" />
+					<field id="earq:processo" label-id="prop.earq_processo_processo"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:classe" label-id="prop.earq_processo_classe"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:assunto" label-id="prop.earq_processo_assunto"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:datadistribuicao" label-id="prop.earq_processo_datadistribuicao"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/daterange.ftl" />
+					</field>
+					<field id="earq:controle" label-id="prop.earq_processo_controle"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:juiz" label-id="prop.earq_processo_juiz" set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:tribunal" label-id="prop.earq_processo_tribunal"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:origem" label-id="prop.earq_processo_origem"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:parte" label-id="prop.earq_processo_parte"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:status" label-id="prop.earq_processo_status"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/selectone.ftl" />
+						<control-param name="options"> ,Em andamento,Arquivo
+							Morto,Outro
+						</control-param>
+					</field>
+					<field id="earq:valor" label-id="prop.earq_processo_valor"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+				</appearance>
+			</form>
+		</forms>
+	</config>
+
+
+
+	<config evaluator="node-type" condition="earq:contrato">
+		<forms>
+			<form>
+				<field-visibility>
+					<show id="cm:name" />
+					<show id="cm:title" force="true" />
+					<show id="cm:description" force="true" />
+
+					<show id="earq:razao" />
+					<show id="earq:fantasia" />
+					<show id="earq:cnpj" />
+					<show id="earq:dataassinatura" />
+					<show id="earq:vigencia" />
+					<show id="earq:numeroproposta" />
+					<show id="earq:numerocontrato" />
+					<show id="earq:valoratual" />
+					<show id="earq:confidencial" />
+				</field-visibility>
+				<appearance>
+					<set id="dadosfieldset" appearance="fieldset" label="Dados do Contrato" />
+
+					<field id="earq:razao" label-id="prop.earq_contrato_razao"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:fantasia" label-id="prop.earq_contrato_fantasia"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:cnpj" label-id="prop.earq_contrato_cnpj" set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+
+					<field id="earq:vigencia" label-id="prop.earq_contrato_vigencia"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/date.ftl" />
+					</field>
+
+					<field id="earq:dataassinatura" label-id="prop.earq_contrato_dataassinatura"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/date.ftl" />
+					</field>
+					<field id="earq:numeroproposta" label-id="prop.earq_contrato_numeroproposta"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:numerocontrato" label-id="prop.earq_contrato_numerocontrato"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:valoratual" label-id="prop.earq_contrato_valoratual"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:confidencial" label-id="prop.earq_contrato_confidencial"
+						set="dadosfieldset">
+						<control template="/org/alfresco/components/form/controls/checkbox.ftl" />
+					</field>
+
+				</appearance>
+			</form>
+
+
+			<!-- Search form -->
+			<form id="search">
+				<field-visibility>
+					<show id="cm:name" />
+					<show id="cm:title" force="true" />
+					<show id="cm:description" force="true" />
+
+					<show id="earq:razao" />
+					<show id="earq:fantasia" />
+					<show id="earq:cnpj" />
+					<show id="earq:dataassinatura" />
+					<show id="earq:vigencia" />
+					<show id="earq:numeroproposta" />
+					<show id="earq:numerocontrato" />
+					<show id="earq:valoratual" />
+					<show id="earq:confidencial" />
+				</field-visibility>
+				<appearance>
+
+					<field id="earq:razao" label-id="prop.earq_contrato_razao">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:fantasia" label-id="prop.earq_contrato_fantasia">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:cnpj" label-id="prop.earq_contrato_cnpj">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+
+					<field id="earq:vigencia" label-id="prop.earq_contrato_vigencia">
+						<control template="/org/alfresco/components/form/controls/daterange.ftl" />
+					</field>
+
+					<field id="earq:dataassinatura" label-id="prop.earq_contrato_dataassinatura">
+						<control template="/org/alfresco/components/form/controls/daterange.ftl" />
+					</field>
+					<field id="earq:numeroproposta" label-id="prop.earq_contrato_numeroproposta">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:numerocontrato" label-id="prop.earq_contrato_numerocontrato">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:valoratual" label-id="prop.earq_contrato_valoratual">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:confidencial" label-id="prop.earq_contrato_confidencial">
+						<control template="/org/alfresco/components/form/controls/checkbox.ftl" />
+					</field>
+				</appearance>
+			</form>
+		</forms>
+	</config>
+
+
+
+
+	<config evaluator="model-type" condition="earq:contrato">
+		<forms>
+			<!-- Search form -->
+			<form id="search">
+				<field-visibility>
+					<show id="cm:name" />
+					<show id="cm:title" force="true" />
+					<show id="cm:description" force="true" />
+
+					<show id="earq:razao" />
+					<show id="earq:fantasia" />
+					<show id="earq:cnpj" />
+					<show id="earq:dataassinatura" />
+					<show id="earq:vigencia" />
+					<show id="earq:numeroproposta" />
+					<show id="earq:numerocontrato" />
+					<show id="earq:valoratual" />
+					<show id="earq:confidencial" />
+				</field-visibility>
+				<appearance>
+					<field id="earq:razao" label-id="prop.earq_contrato_razao">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:fantasia" label-id="prop.earq_contrato_fantasia">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:cnpj" label-id="prop.earq_contrato_cnpj">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+
+					<field id="earq:vigencia" label-id="prop.earq_contrato_vigencia">
+						<control template="/org/alfresco/components/form/controls/daterange.ftl" />
+					</field>
+
+					<field id="earq:dataassinatura" label-id="prop.earq_contrato_dataassinatura">
+						<control template="/org/alfresco/components/form/controls/date.ftl" />
+					</field>
+					<field id="earq:numeroproposta" label-id="prop.earq_contrato_numeroproposta">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:numerocontrato" label-id="prop.earq_contrato_numerocontrato">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:valoratual" label-id="prop.earq_contrato_valoratual">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:confidencial" label-id="prop.earq_contrato_confidencial">
+						<control template="/org/alfresco/components/form/controls/checkbox.ftl" />
+					</field>
+				</appearance>
+			</form>
+		</forms>
+	</config>
+
+
+	<config evaluator="node-type" condition="earq:prontuario">
+		<forms>
+			<form>
+				<field-visibility>
+					<show id="cm:name" />
+					<show id="cm:title" force="true" />
+					<show id="cm:description" force="true" />
+
+					<show id="earq:admissao" />
+					<show id="earq:desligamento" />
+					<show id="earq:centrodecusto" />
+					<show id="earq:unidadetrabalho" />
+					<show id="earq:ramal" />
+					<show id="earq:afastado" />
+					<show id="earq:inativo" />
+					<show id="earq:cpf" />
+					<show id="earq:rg" />
+					<show id="earq:ctps" />
+					<show id="earq:pis" />
+					<show id="earq:cnh" />
+					<show id="earq:categcnh" />
+					<show id="earq:venccnh" />
+					<show id="earq:endereco" />
+					<show id="earq:telefoneresidencial" />
+				</field-visibility>
+				<appearance>
+					<set id="dadoscadfieldset" appearance="fieldset" label="Dados Cadastrais" />
+					<set id="dadospesfieldset" appearance="fieldset" label="Dados Pessoais" />
+					<field id="earq:admissao" label-id="prop.earq_prontuario_admissao"
+						set="dadoscadfieldset">
+						<control template="/org/alfresco/components/form/controls/date.ftl" />
+					</field>
+					<field id="earq:desligamento" label-id="prop.earq_prontuario_desligamento"
+						set="dadoscadfieldset">
+						<control template="/org/alfresco/components/form/controls/date.ftl" />
+					</field>
+					<field id="earq:centrodecusto" label-id="prop.earq_prontuario_centrodecusto"
+						set="dadoscadfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:unidadetrabalho" label-id="prop.earq_prontuario_unidadetrabalho"
+						set="dadoscadfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:ramal" label-id="prop.earq_prontuario_ramal"
+						set="dadoscadfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:afastado" label-id="prop.earq_prontuario_afastado"
+						set="dadoscadfieldset">
+						<control template="/org/alfresco/components/form/controls/checkbox.ftl" />
+					</field>
+					<field id="earq:inativo" label-id="prop.earq_prontuario_inativo"
+						set="dadoscadfieldset">
+						<control template="/org/alfresco/components/form/controls/checkbox.ftl" />
+					</field>
+					<field id="earq:cpf" label-id="prop.earq_prontuario_cpf" set="dadospesfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:rg" label-id="prop.earq_prontuario_rg" set="dadospesfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+
+					<field id="earq:ctps" label-id="prop.earq_prontuario_ctps"
+						set="dadospesfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:pis" label-id="prop.earq_prontuario_pis" set="dadospesfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:cnh" label-id="prop.earq_prontuario_cnh" set="dadospesfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:categcnh" label-id="prop.earq_prontuario_categcnh"
+						set="dadospesfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:venccnh" label-id="prop.earq_prontuario_venccnh"
+						set="dadospesfieldset">
+						<control template="/org/alfresco/components/form/controls/date.ftl" />
+					</field>
+					<field id="earq:endereco" label-id="prop.earq_prontuario_endereco"
+						set="dadospesfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:telefoneresidencial" label-id="prop.earq_prontuario_telefoneresidencial"
+						set="dadospesfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+				</appearance>
+			</form>
+
+		</forms>
+	</config>
+
+
+
+	<config evaluator="model-type" condition="earq:prontuario">
+		<forms>
+			<form id="search">
+				<field-visibility>
+					<show id="cm:name" />
+					<show id="cm:title" force="true" />
+					<show id="cm:description" force="true" />
+
+					<show id="earq:admissao" />
+					<show id="earq:desligamento" />
+					<show id="earq:centrodecusto" />
+					<show id="earq:unidadetrabalho" />
+					<show id="earq:ramal" />
+					<show id="earq:afastado" />
+					<show id="earq:inativo" />
+					<show id="earq:cpf" />
+					<show id="earq:rg" />
+					<show id="earq:ctps" />
+					<show id="earq:pis" />
+					<show id="earq:cnh" />
+					<show id="earq:categcnh" />
+					<show id="earq:venccnh" />
+					<show id="earq:endereco" />
+					<show id="earq:telefoneresidencial" />
+				</field-visibility>
+				<appearance>
+					<set id="dadoscadfieldset" appearance="fieldset" label="Dados Cadastrais" />
+					<set id="dadospesfieldset" appearance="fieldset" label="Dados Pessoais" />
+					<field id="earq:admissao" label-id="prop.earq_prontuario_admissao"
+						set="dadoscadfieldset">
+						<control template="/org/alfresco/components/form/controls/daterange.ftl" />
+					</field>
+					<field id="earq:desligamento" label-id="prop.earq_prontuario_desligamento"
+						set="dadoscadfieldset">
+						<control template="/org/alfresco/components/form/controls/daterange.ftl" />
+					</field>
+					<field id="earq:centrodecusto" label-id="prop.earq_prontuario_centrodecusto"
+						set="dadoscadfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:unidadetrabalho" label-id="prop.earq_prontuario_unidadetrabalho"
+						set="dadoscadfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:ramal" label-id="prop.earq_prontuario_ramal"
+						set="dadoscadfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:afastado" label-id="prop.earq_prontuario_afastado"
+						set="dadoscadfieldset">
+						<control template="/org/alfresco/components/form/controls/checkbox.ftl" />
+					</field>
+					<field id="earq:inativo" label-id="prop.earq_prontuario_inativo"
+						set="dadoscadfieldset">
+						<control template="/org/alfresco/components/form/controls/checkbox.ftl" />
+					</field>
+					<field id="earq:cpf" label-id="prop.earq_prontuario_cpf" set="dadospesfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:rg" label-id="prop.earq_prontuario_rg" set="dadospesfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+
+					<field id="earq:ctps" label-id="prop.earq_prontuario_ctps"
+						set="dadospesfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:pis" label-id="prop.earq_prontuario_pis" set="dadospesfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:cnh" label-id="prop.earq_prontuario_cnh" set="dadospesfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:categcnh" label-id="prop.earq_prontuario_categcnh"
+						set="dadospesfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:venccnh" label-id="prop.earq_prontuario_venccnh"
+						set="dadospesfieldset">
+						<control template="/org/alfresco/components/form/controls/daterange.ftl" />
+					</field>
+					<field id="earq:endereco" label-id="prop.earq_prontuario_endereco"
+						set="dadospesfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:telefoneresidencial" label-id="prop.earq_prontuario_telefoneresidencial"
+						set="dadospesfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+
+				</appearance>
+			</form>
+		</forms>
+	</config>
+
+
+	<config evaluator="string-compare" condition="AdvancedSearch">
+		<advanced-search>
+			<!-- Forms for the advanced search type list -->
+			<forms>
+				<form labelId="type.earq_contrato" descriptionId="search.form.desc.earq_contrato">earq:contrato
+				</form>
+				<form labelId="type.earq_processo" descriptionId="search.form.desc.earq_processo">earq:processo
+				</form>
+				<form labelId="type.earq_prontuario" descriptionId="search.form.desc.earq_prontuario">earq:prontuario
+				</form>
+			</forms>
+		</advanced-search>
+	</config>
+
+
+</alfresco-config>
