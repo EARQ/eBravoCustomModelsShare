@@ -338,7 +338,7 @@
 					</field>
 
 					<field id="earq:dataassinatura" label-id="prop.earq_contrato_dataassinatura">
-						<control template="/org/alfresco/components/form/controls/date.ftl" />
+						<control template="/org/alfresco/components/form/controls/daterange.ftl" />
 					</field>
 					<field id="earq:numeroproposta" label-id="prop.earq_contrato_numeroproposta">
 						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
@@ -370,6 +370,7 @@
 					<show id="earq:desligamento" />
 					<show id="earq:centrodecusto" />
 					<show id="earq:unidadetrabalho" />
+					<show id="earq:funcao" />
 					<show id="earq:ramal" />
 					<show id="earq:afastado" />
 					<show id="earq:inativo" />
@@ -380,6 +381,9 @@
 					<show id="earq:cnh" />
 					<show id="earq:categcnh" />
 					<show id="earq:venccnh" />
+					<show id="earq:nacionalidade" />
+					<show id="earq:datanascimento" />
+					<show id="earq:estadocivil" />
 					<show id="earq:endereco" />
 					<show id="earq:telefoneresidencial" />
 				</field-visibility>
@@ -399,6 +403,10 @@
 						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
 					</field>
 					<field id="earq:unidadetrabalho" label-id="prop.earq_prontuario_unidadetrabalho"
+						set="dadoscadfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:funcao" label-id="prop.earq_prontuario_funcao"
 						set="dadoscadfieldset">
 						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
 					</field>
@@ -438,6 +446,18 @@
 					<field id="earq:venccnh" label-id="prop.earq_prontuario_venccnh"
 						set="dadospesfieldset">
 						<control template="/org/alfresco/components/form/controls/date.ftl" />
+					</field>
+					<field id="earq:nacionalidade" label-id="prop.earq_prontuario_nacionalidade"
+						set="dadospesfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:datanascimento" label-id="prop.earq_prontuario_datanascimento"
+						set="dadospesfieldset">
+						<control template="/org/alfresco/components/form/controls/date.ftl" />
+					</field>
+					<field id="earq:estadocivil" label-id="prop.earq_prontuario_estadocivil"
+						set="dadospesfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
 					</field>
 					<field id="earq:endereco" label-id="prop.earq_prontuario_endereco"
 						set="dadospesfieldset">
@@ -467,6 +487,7 @@
 					<show id="earq:desligamento" />
 					<show id="earq:centrodecusto" />
 					<show id="earq:unidadetrabalho" />
+					<show id="earq:funcao" />
 					<show id="earq:ramal" />
 					<show id="earq:afastado" />
 					<show id="earq:inativo" />
@@ -477,6 +498,9 @@
 					<show id="earq:cnh" />
 					<show id="earq:categcnh" />
 					<show id="earq:venccnh" />
+					<show id="earq:nacionalidade" />
+					<show id="earq:datanascimento" />
+					<show id="earq:estadocivil" />
 					<show id="earq:endereco" />
 					<show id="earq:telefoneresidencial" />
 				</field-visibility>
@@ -496,6 +520,10 @@
 						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
 					</field>
 					<field id="earq:unidadetrabalho" label-id="prop.earq_prontuario_unidadetrabalho"
+						set="dadoscadfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:funcao" label-id="prop.earq_prontuario_funcao"
 						set="dadoscadfieldset">
 						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
 					</field>
@@ -535,6 +563,19 @@
 					<field id="earq:venccnh" label-id="prop.earq_prontuario_venccnh"
 						set="dadospesfieldset">
 						<control template="/org/alfresco/components/form/controls/daterange.ftl" />
+					</field>
+
+					<field id="earq:nacionalidade" label-id="prop.earq_prontuario_nacionalidade"
+						set="dadospesfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
+					</field>
+					<field id="earq:datanascimento" label-id="prop.earq_prontuario_datanascimento"
+						set="dadospesfieldset">
+						<control template="/org/alfresco/components/form/controls/daterange.ftl" />
+					</field>
+					<field id="earq:estadocivil" label-id="prop.earq_prontuario_estadocivil"
+						set="dadospesfieldset">
+						<control template="/org/alfresco/components/form/controls/textfield.ftl" />
 					</field>
 					<field id="earq:endereco" label-id="prop.earq_prontuario_endereco"
 						set="dadospesfieldset">
